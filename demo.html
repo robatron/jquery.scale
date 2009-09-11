@@ -37,12 +37,18 @@
             width: 200;
         }
 
-        img{
+        .parent_same-size{
+            height: 200;
+            width: 150;
+        }
+
+        .object{
+            /*
             display: block;
             margin-left: auto;
             margin-right: auto;
-            background-color: f00;
-            border:solid #00ff00; 
+            border:3px solid green;
+            */
         }
     </style>
     
@@ -55,6 +61,7 @@
             $("#larger_h-ct-w").scale();
             $("#larger_w-ct-h").scale();
             $("#larger_eq").scale();
+            $("#same-size").scale();
         });
     </script>
 </head>
@@ -94,6 +101,12 @@
     <p>scale the object proportionally to the height <i>or</i> width of the parent (the outcome will be the same)</p>
     <div class='parent parent_too-small_eq'>
         <img id='larger_eq' src='test-image.gif' class='object'>
+    </div>
+    
+    <h3>object is the exact same size as the parent</h3>
+    <p>don't do anything</p>
+    <div class='parent parent_same-size'>
+        <img id='same-size' class='object' src='test-image.gif'>
     </div>
     
 </body>

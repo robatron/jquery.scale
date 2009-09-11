@@ -20,13 +20,13 @@ jQuery.fn.scale = function()
     console.log( "Proportionally scaling stuff..." );
     
     // grab the object and parent's height and width
-    oHeight = this.outerHeight();
-    oWidth = this.outerWidth();
+    oHeight = this.outerHeight( true );
+    oWidth = this.outerWidth( true );
     pHeight = this.parent().innerHeight();
     pWidth = this.parent().innerWidth();
     
     // Object too tall, but width is fine. Need to shorten.
-    if( oHeight > pHeight && oWidth <= pWidth ){
+    if( oHeight > pHeight && oWidth < pWidth ){
         
         console.log( "Object too tall, but width is fine. Need to shorten." );
         
@@ -34,7 +34,7 @@ jQuery.fn.scale = function()
     }
     
     // Object too wide, but height is fine. Need to diet.
-    else if( oWidth > pWidth && oHeight <= pHeight ){
+    else if( oWidth > pWidth && oHeight < pHeight ){
         
         console.log( "Object too wide, but height is fine. Need to diet." );
         
@@ -43,7 +43,7 @@ jQuery.fn.scale = function()
     
     // Object too short and skinny. Need to match the dimenstion that is
     // closer to being correct.
-    else if( oWidth < pWidth && oHeight <= pHeight ){
+    else if( oWidth < pWidth && oHeight < pHeight ){
     
         console.log( "Object too short and skinny." );
                
@@ -62,7 +62,7 @@ jQuery.fn.scale = function()
     
     // Object too tall and wide. Need to match the dimenstion that is
     // further from being correct.
-    } else if( oWidth > pWidth && oHeight >= pHeight ){
+    } else if( oWidth > pWidth && oHeight > pHeight ){
     
         console.log( "Object too tall and wide." );
                
@@ -78,21 +78,21 @@ jQuery.fn.scale = function()
             
             matchWidth( this );
         }
-    }
-     
+    } else 
+        console.log( "Object is the exact same size as parent. Do nothing." );
+    
     // match the height while maintaining the aspect ratio
     function matchHeight( obj ){
-       console.log( "Adjusting height." );
-       console.log( "oWidth = " + oWidth + ", pHeight/oHeight = " + pHeight/oHeight );
-       obj.width( oWidth * pHeight/oHeight );
-       obj.height( pHeight );
+        console.log( "Adjusting height." );
+        
+        obj.width( oWidth * pHeight/oHeight - (oWidth - obj.width()) );
     }
      
     // match the width while maintaining the aspect ratio
     function matchWidth( obj ){
-       console.log( "Adjusting width." );
-       obj.height( oHeight * pWidth/oWidth );
-       obj.width( pWidth ); 
+        console.log( "Adjusting width." );
+
+        obj.height( oHeight * pWidth/oWidth - (oHeight - obj.height()) );
     }
 
     console.log("... Done safely resizing stuff.");
