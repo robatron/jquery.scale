@@ -1,0 +1,113 @@
+<html>
+<head>
+    <style>
+        .parent{
+            display: relative;
+            background-color: white;
+            border:solid black;
+        }
+
+        .shorter{
+            height: 264;
+            width: 315;
+        }
+        
+        .skinnier{
+            height: 364;
+            width: 215;
+        }
+        
+        .smaller{
+            height: 264;
+            width: 215;
+        }
+        
+        .larger{
+            height: 364;
+            width: 315;
+        }
+
+        .object{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: f00;
+            border:solid 00ff00; 
+        }
+    </style>
+    
+    <script src="jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script src="jquery.scale.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        
+            // for "fit" mode
+            $("#taller").scale();
+            $("#wider").scale();
+            $("#fit_smaller").scale();
+            $("#fit_larger").scale();
+                                     
+            // for fill mode
+            $("#shorter").scale();
+            $("#skinnier").scale();
+            $("#fill_larger").scale();
+            $("#fill_smaller").scale();
+            
+        });
+    </script>
+</head>
+<body>
+    <h1>jquery.scale demo</h1>
+    
+    <p>
+        This is a demo for the scale jQuery plugin which resizes objects inside
+        thier parent while maintaining the aspect ratio. 
+    </p>
+    
+    <h2>"fit" mode</h2>
+    <code>$('obj').scale();</code>
+    <p>
+        In this mode, the plugin will scale the object to the largest size
+        possible while still fitting inside its parent and maintaining the
+        aspect ratio.
+    </p>
+    
+    <h3>object is taller than the parent</h3>
+    <p>scale the object to the height of the parent</p>
+    <div class='parent shorter'>
+        <img id='taller' src='test-image.gif' class='object'>
+    </div>
+    
+    <h3>object is wider than the parent</h3>
+    <p>scale the object to the width of the parent</p>
+    <div class='parent skinnier'>
+        <img id='wider' src='test-image.gif' class='object'>
+    </div>
+    
+    <h3>object is taller and wider than the parent</h3>
+    <p>scale the object to the width of the parent</p>
+    <div class='parent smaller'>
+        <img id='fit_larger' src='test-image.gif' class='object'>
+    </div>
+    
+    <h3>object is shorter and skinnier than the boundar</h3>
+    <p>increase the height and width of the </p>
+    <div class='parent larger'>
+        <img id='fit_smaller' src='test-image.gif' class='object'>
+    </div>
+    
+    <h2>"fill" mode</h2>
+    <code>$('obj').scale("fill");</code>
+    <p>
+        In this mode, the plugin will scale the object to the largest size
+        possible to fill the parent while still maintaining the aspect ratio.
+    </p>
+    
+    <h3>object is shorter than the parent</h3>
+    <p>scale the object to the height of the parent</p>
+    <div class='parent taller'>
+        <img id='shorter' src='test-image.gif' class='object'>
+    </div>
+    
+</body>
+</html>
