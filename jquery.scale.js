@@ -4,160 +4,95 @@
  * licensed under GPLv3.
  * Date: 9/4/2009
  *
- * @projectDescription jQuery extension for resizing an object maintaining the aspect ratio
+ * @projectDescription jQuery extension for scaling an object inside its parent while maintaining the aspect ratio
  * @author Rob McGuire-Dale -  rob.mcguiredale@gmail.com
  * @version 1.0
  *
  * @id jQuery.scale
  * @id jQuery.fn.scale
- * @param {String} Resize object to fit inside its parent object maintaining the aspect ratio. Optionally, one may enter ["fill"] to expand the object to fill its parent maintaining aspect ratio.
+ * @param {String} Resize object to fit inside its parent object maintaining the aspect ratio.
  * @return {jQuery} Returns the same jQuery object, for chaining.
  *
  */
 
-jQuery.fn.scale = function( fill )
+jQuery.fn.scale = function()
 {       
     console.log( "Proportionally scaling stuff..." );
     
-    // grab the parent's height and width
-    height = this.parent().height();
-    width = this.parent().width();
+    // grab the object and parent's height and width
+    oHeight = this.outerHeight();
+    oWidth = this.outerWidth();
+    pHeight = this.parent().innerHeight();
+    pWidth = this.parent().innerWidth();
     
-    // if the user did not supply the "fill" option, resize the object to fit 
-    // inside its parent
-    if( fill != "fill" ){
+    // Object too tall, but width is fine. Need to shorten.
+    if( oHeight > pHeight && oWidth <= pWidth ){
+        
+        console.log( "Object too tall, but width is fine. Need to shorten." );
+        
+        matchHeight( this );       
+    }
     
-        console.log( "Resizing in 'fit' mode" );
+    // Object too wide, but height is fine. Need to diet.
+    else if( oWidth > pWidth && oHeight <= pHeight ){
+        
+        console.log( "Object too wide, but height is fine. Need to diet." );
+        
+        matchWidth( this );    
+    }
     
-        // Object too tall, but width is fine. Need to shorten.
-        if( this.outerHeight( true ) > height && this.outerWidth( true ) < width ){
+    // Object too short and skinny. Need to match the dimenstion that is
+    // closer to being correct.
+    else if( oWidth < pWidth && oHeight <= pHeight ){
+    
+        console.log( "Object too short and skinny." );
+               
+        if( Math.abs(pHeight - oHeight) < Math.abs(pWidth - oWidth) ){
             
-            console.log( "Object too tall, but width is fine. Need to shorten." );
+            console.log( "Height is closer to being correct." );
             
-            matchHeight( this );       
+            matchWidth( this );
+            
+        } else {
+        
+            console.log( "Width is closer to being correct." );
+            
+            matchHeight( this );
         }
-        
-        // Object too wide, but height is fine. Need to diet.
-        else if( this.outerWidth( true ) > width && this.outerHeight( true ) < height ){
+    
+    // Object too tall and wide. Need to match the dimenstion that is
+    // further from being correct.
+    } else if( oWidth > pWidth && oHeight >= pHeight ){
+    
+        console.log( "Object too tall and wide." );
+               
+        if( Math.abs(pHeight - oHeight) > Math.abs(pWidth - oWidth) ){
             
-            console.log( "Object too wide, but height is fine. Need to diet." );
+            console.log( "Height is further from being correct." );
             
-            matchWidth( this );    
-        }
-        
-        // Object too short and skinny. Need to match the dimenstion that is
-        // closer to being correct.
-        else if( this.outerWidth( true ) < width && this.outerHeight( true ) < height ){
-        
-            console.log( "Object too short and skinny." );
-                   
-            if( Math.abs(height - this.outerHeight( true )) < Math.abs(width - this.outerWidth( true )) ){
-                
-                console.log( "Height is closer to being correct." );
-                
-                matchWidth( this );
-                
-            } else {
+            matchHeight( this );
             
-                console.log( "Width is closer to being correct." );
-                
-                matchHeight( this );
-            }
+        } else {
         
-        // Object too tall and wide. Need to match the dimenstion that is
-        // further from being correct.
-        } else if( this.outerWidth( true ) > width && this.outerHeight( true ) > height ){
-        
-            console.log( "Object too tall and wide." );
-                   
-            if( Math.abs(height - this.outerHeight( true )) > Math.abs(width - this.outerWidth( true )) ){
-                
-                console.log( "Height is further from being correct." );
-                
-                matchHeight( this );
-                
-            } else {
+            console.log( "Width is further from being correct." );
             
-                console.log( "Width is further from being correct." );
-                
-                matchWidth( this );
-            }
-        }
-        
-    // if the user *did* supply the "fill" option, resize the object to 
-    // completely fill its parent
-    } else {
-
-        console.log( "Resizing in 'fill' mode" );
-
-        // Object too skinny, but height is fine. Need to widen.
-        if( this.outerHeight( true ) > height && this.outerWidth( true ) < width ){
-            
-            console.log( "Object too tall, but width is fine. Need to shorten." );
-            
-            matchWidth( this );       
-        }
-        
-        // Object too short, but width is fine. Need to make taller.
-        else if( this.outerWidth( true ) > width && this.outerHeight( true ) < height ){
-            
-            console.log( "Object too wide, but height is fine. Need to diet." );
-            
-            matchHeight( this );    
-        }
-        
-        // Object too short and skinny. Need to match the dimenstion that is
-        // further from being correct.
-        else if( this.outerWidth( true ) < width && this.outerHeight( true ) < height ){
-        
-            console.log( "Object too short and skinny." );
-                   
-            if( Math.abs(height - this.outerHeight( true )) > Math.abs(width - this.outerWidth( true )) ){
-                
-                console.log( "Height is further from being correct." );
-                
-                matchHeight( this );
-                
-            } else {
-            
-                console.log( "Width is further from being correct." );
-                
-                matchWidth( this );
-            }
-        
-        // Object too tall and wide. Need to match the dimenstion that is
-        // closer to being correct.
-        } else if( this.outerWidth( true ) > width && this.outerHeight( true ) > height ){
-        
-            console.log( "Object too tall and wide." );
-                   
-            if( Math.abs(height() - this.outerHeight( true )) < Math.abs(width() - this.outerWidth( true )) ){
-                
-                console.log( "Height is closer to being correct." );
-                
-                matchHeight( this );
-                
-            } else {
-            
-                console.log( "Width is closer to being correct." );
-                
-                matchWidth( this );
-            }
+            matchWidth( this );
         }
     }
      
     // match the height while maintaining the aspect ratio
     function matchHeight( obj ){
        console.log( "Adjusting height." );
-       obj.width( obj.width() * height/obj.height() );
-       obj.height( height );
+       console.log( "oWidth = " + oWidth + ", pHeight/oHeight = " + pHeight/oHeight );
+       obj.width( oWidth * pHeight/oHeight );
+       obj.height( pHeight );
     }
      
     // match the width while maintaining the aspect ratio
     function matchWidth( obj ){
        console.log( "Adjusting width." );
-       obj.height( obj.height() * width/obj.width() );
-       obj.width( width ); 
+       obj.height( oHeight * pWidth/oWidth );
+       obj.width( pWidth ); 
     }
 
     console.log("... Done safely resizing stuff.");
