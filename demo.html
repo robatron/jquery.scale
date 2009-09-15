@@ -7,6 +7,11 @@
             border:solid black;
         }
 
+        .parent_same-size{
+            height: 200;
+            width: 150;
+        }
+
         .parent_too-short{
             height: 150;
             width: 200;
@@ -32,14 +37,19 @@
             width: 100;
         }
         
-        .parent_too-large{
+        .parent_too-large_h-ct-w{
             height: 250;
+            width: 250;
+        }
+        
+        .parent_too-large_w-ct-h{
+            height: 300;
             width: 200;
         }
-
-        .parent_same-size{
-            height: 200;
-            width: 150;
+        
+        .parent_too-large_eq{
+            height: 250;
+            width: 200;
         }
 
         .object{
@@ -56,12 +66,15 @@
     <script src="jquery.scale.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#taller").scale();
-            $("#wider").scale();
-            $("#larger_h-ct-w").scale();
-            $("#larger_w-ct-h").scale();
-            $("#larger_eq").scale();
-            $("#same-size").scale();
+            $("#same-size").scale("center");
+            $("#taller").scale("center");
+            $("#wider").scale("center");
+            $("#larger_h-ct-w").scale("center");
+            $("#larger_w-ct-h").scale("center");
+            $("#larger_eq").scale("center");
+            $("#smaller_h-ct-w").scale("center");
+            $("#smaller_w-ct-h").scale("center");
+            $("#smaller_eq").scale("center");
         });
     </script>
 </head>
@@ -69,9 +82,15 @@
     <h1>jquery.scale demo</h1>
     
     <p>
-        This is a demo for the scale jQuery plugin which resizes objects inside
-        thier parent while maintaining the aspect ratio. 
+        This is a demo for the scale jQuery plugin which resizes objects to fit
+        inside thier parents while maintaining the aspect ratio. 
     </p>
+    
+    <h3>object is the exact same size as the parent</h3>
+    <p>don't do anything</p>
+    <div class='parent parent_same-size'>
+        <img id='same-size' class='object' src='test-image.gif'>
+    </div>
     
     <h3>object is taller than the parent, but the width is fine</h3>
     <p>scale the object proportionally to the height of the parent</p>
@@ -98,15 +117,27 @@
     </div>
     
     <h3>object is taller and wider than the parent (both height and width are equally close to being correct)</h3>
-    <p>scale the object proportionally to the height <i>or</i> width of the parent (the outcome will be the same)</p>
+    <p>scale the object proportionally to the width</p>
     <div class='parent parent_too-small_eq'>
         <img id='larger_eq' src='test-image.gif' class='object'>
     </div>
     
-    <h3>object is the exact same size as the parent</h3>
-    <p>don't do anything</p>
-    <div class='parent parent_same-size'>
-        <img id='same-size' class='object' src='test-image.gif'>
+    <h3>object is shorter and skinnier than the parent (height is closer to being correct than width)</h3>
+    <p>Scale the object proportionally to the height of the parent</p>
+    <div class='parent parent_too-large_h-ct-w'>
+        <img id='smaller_h-ct-w' src='test-image.gif' class='object'>
+    </div>
+    
+    <h3>object is shorter and skinnier than the parent (width is closer to being correct than height)</h3>
+    <p>scale the object proportionally to the width of the parent</p>
+    <div class='parent parent_too-large_w-ct-h'>
+        <img id='smaller_w-ct-h' src='test-image.gif' class='object'>
+    </div>
+    
+    <h3>object is shorter and skinnier than the parent (both height and width are equally close to being correct)</h3>
+    <p>scale the object proportionally to the height</p>
+    <div class='parent parent_too-large_eq'>
+        <img id='smaller_eq' src='test-image.gif' class='object'>
     </div>
     
 </body>
