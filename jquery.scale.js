@@ -41,8 +41,7 @@ jQuery.fn.scale = function( center )
             
             matchHeight( this );
             
-        } else
-            matchWidth( this );
+        } else matchWidth( this );
     
     // Object too tall and wide. Need to match the dimenstion that is
     // further from being correct.
@@ -54,8 +53,7 @@ jQuery.fn.scale = function( center )
             
             matchHeight( this );
             
-        } else
-            matchWidth( this );
+        } else matchWidth( this );
 
     }//else, object is the same size  as the parent. Do nothing.
 
