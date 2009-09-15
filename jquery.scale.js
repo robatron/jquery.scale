@@ -5,7 +5,7 @@
  * Date: 9/4/2009
  *
  * @projectDescription jQuery extension for scaling an object to fit inside its parent while maintaining the aspect ratio
- * @author Rob McGuire-Dale -  rob.mcguiredale@gmail.com
+ * @author Rob McGuire-Dale -  rob@osuoslcom
  * @version 1.0
  *
  * @id jQuery.scale
