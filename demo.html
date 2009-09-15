@@ -1,24 +1,7 @@
 <html>
 <head>
-    <style>
-        .wrapper{
-            border: solid lightgreen;
-        }
-        
-        .arrow{
-            float: left;
-            margin-top: 5em;
-            margin-left: 5em;
-        }
-        
-        .parent_orig{
-            float: left;
-            background-color: white;
-            border:solid black;
-        }
-        
+    <style>                
         .parent{
-            margin-left: 20em;
             background-color: white;
             border:solid black;
         }
@@ -69,12 +52,7 @@
         }
 
         .object{
-            /*
             display: block;
-            margin-left: auto;
-            margin-right: auto;
-            border:3px solid green;
-            */
         }
     </style>
     
@@ -104,105 +82,165 @@
     
     <h3>object is the exact same size as the parent</h3>
     <p>don't do anything</p>
-    <div class='wrapper' >
-        <div class='parent_orig parent_same-size'>
-            <img class='object' src='test-image.gif' caption="test">
-        </div> 
-        
-        <img src='arrow.png' class='arrow'>
-        
-        <div class='parent parent_same-size'>
-            <img id='same-size' class='object' src='test-image.gif'>
-        </div>
-    </div>
+    <table>
+        <td>
+            <div class='parent parent_same-size'>
+                <img class='object' src='test-image.gif' caption="test">
+            </div> 
+        </td>
+        <td>
+            <img src='arrow.png' class='arrow'>
+        </td>
+        <td>
+            <div class='parent parent_same-size'>
+                <img id='same-size' class='object' src='test-image.gif'>
+            </div>
+        </td>
+    </table>
     
     <h3>object is taller than the parent, but the width is fine</h3>
     <p>scale the object proportionally to the height of the parent</p>
-    <div class='wrapper'>
-        <div class='parent_orig parent_too-short'>
-            <img class='object' src='test-image.gif'>
-        </div>
-        <div class='parent parent_too-short'>
-            <img id='taller' class='object' src='test-image.gif'>
-        </div>
-    </div>
+    <table>
+        <td>
+            <div class='parent parent_too-short'>
+                <img class='object' src='test-image.gif'>
+            </div>
+        </td>
+        <td>
+            <img src='arrow.png' class='arrow'>
+        </td>
+        <td>
+            <div class='parent parent_too-short'>
+                <img id='taller' class='object' src='test-image.gif'>
+            </div>
+        </td>
+    </table>
     
     <h3>object is wider than the parent, but the height is fine</h3>
     <p>scale the object proportionally to the width of the parent</p>
-    <div class='wrapper'>
-        <div class='parent_orig parent_too-skinny'>
-            <img src='test-image.gif' class='object'>
-        </div>    
-        <div class='parent parent_too-skinny'>
-            <img id='wider' src='test-image.gif' class='object'>
-        </div>
-    </div>
+    <table>
+        <td>
+            <div class='parent parent_too-skinny'>
+                <img src='test-image.gif' class='object'>
+            </div>
+        </td>
+        <td>
+            <img src='arrow.png' class='arrow'>
+        </td>
+        <td>
+            <div class='parent parent_too-skinny'>
+                <img id='wider' src='test-image.gif' class='object'>
+            </div>
+        </td>
+    </table>
 
     <h3>object is taller and wider than the parent (height is closer to being correct than width)</h3>
     <p>Scale the object proportionally to the width of the parent</p>
-    <div class='wrapper'>
-        <div class='parent_orig parent_too-small_h-ct-w'>
-            <img src='test-image.gif' class='object'>
-        </div>
-        <div class='parent parent_too-small_h-ct-w'>
-            <img id='larger_h-ct-w' src='test-image.gif' class='object'>
-        </div>
-    </div>
+    <table>
+        <td>
+            <div class='parent parent_too-small_h-ct-w'>
+                <img src='test-image.gif' class='object'>
+            </div>
+        </td>
+        <td>
+            <img src='arrow.png' class='arrow'>
+        </td>
+        <td>
+            <div class='parent parent_too-small_h-ct-w'>
+                <img id='larger_h-ct-w' src='test-image.gif' class='object'>
+            </div>
+        </td>
+    </table>
     
     <h3>object is taller and wider than the parent (width is closer to being correct than height)</h3>
     <p>scale the object proportionally to the height of the parent</p>
-    <div class='wrapper'>
-        <div class='parent_orig parent_too-small_w-ct-h'>
-            <img src='test-image.gif' class='object'>
-        </div>
-        <div class='parent parent_too-small_w-ct-h'>
-            <img id='larger_w-ct-h' src='test-image.gif' class='object'>
-        </div>
-    </div>
+    <table>
+        <td>
+            <div class='parent parent_too-small_w-ct-h'>
+                <img src='test-image.gif' class='object'>
+            </div>
+        </td>
+        <td>
+            <img src='arrow.png' class='arrow'>
+        </td>
+        <td>
+            <div class='parent parent_too-small_w-ct-h'>
+                <img id='larger_w-ct-h' src='test-image.gif' class='object'>
+            </div>
+        </td>
+    </table>
     
     <h3>object is taller and wider than the parent (both height and width are equally close to being correct)</h3>
     <p>scale the object proportionally to the width</p>
-    <div class='wrapper'>
-        <div class='parent_orig parent_too-small_eq'>
-            <img src='test-image.gif' class='object'>
-        </div>
-        <div class='parent parent_too-small_eq'>
-            <img id='larger_eq' src='test-image.gif' class='object'>
-        </div>
-    </div>
+    <table>
+        <td>
+            <div class='parent parent_too-small_eq'>
+                <img src='test-image.gif' class='object'>
+            </div>
+        </td>
+        <td>
+            <img src='arrow.png' class='arrow'>
+        </td>
+        <td>
+            <div class='parent parent_too-small_eq'>
+                <img id='larger_eq' src='test-image.gif' class='object'>
+            </div>
+        </td>
+    </table>
     
     <h3>object is shorter and skinnier than the parent (height is closer to being correct than width)</h3>
     <p>Scale the object proportionally to the height of the parent</p>
-    <div class='wrapper'>
-        <div class='parent_orig parent_too-large_h-ct-w'>
-            <img src='test-image.gif' class='object'>
-        </div>
-        <div class='parent parent_too-large_h-ct-w'>
-            <img id='smaller_h-ct-w' src='test-image.gif' class='object'>
-        </div>
-    </div>
+    <table>
+        <td>
+            <div class='parent parent_too-large_h-ct-w'>
+                <img src='test-image.gif' class='object'>
+            </div>
+        </td>
+        <td>
+            <img src='arrow.png' class='arrow'>
+        </td>
+        <td>
+            <div class='parent parent_too-large_h-ct-w'>
+                <img id='smaller_h-ct-w' src='test-image.gif' class='object'>
+            </div>
+        </td>
+    </table>
     
     <h3>object is shorter and skinnier than the parent (width is closer to being correct than height)</h3>
     <p>scale the object proportionally to the width of the parent</p>
-    <div class='wrapper'>
-        <div class='parent_orig parent_too-large_w-ct-h'>
-            <img src='test-image.gif' class='object'>
-        </div>
-        <div class='parent parent_too-large_w-ct-h'>
-            <img id='smaller_w-ct-h' src='test-image.gif' class='object'>
-        </div>
-    </div>
+    <table>
+        <td>
+            <div class='parent parent_too-large_w-ct-h'>
+                <img src='test-image.gif' class='object'>
+            </div>
+        </td>
+        <td>
+            <img src='arrow.png' class='arrow'>
+        </td>
+        <td>
+            <div class='parent parent_too-large_w-ct-h'>
+                <img id='smaller_w-ct-h' src='test-image.gif' class='object'>
+            </div>
+        </td>
+    </table>
     
     <h3>object is shorter and skinnier than the parent (both height and width are equally close to being correct)</h3>
     <p>scale the object proportionally to the height</p>
-    <div class='wrapper'>
-        <div class='parent_orig parent_too-large_eq'>
-            <img src='test-image.gif' class='object'>
-        </div>
-        <div class='parent parent_too-large_eq'>
-            <img id='smaller_eq' src='test-image.gif' class='object'>
-        </div>
-    </div>
+    <table>
+        <td>
+            <div class='parent parent_too-large_eq'>
+                <img src='test-image.gif' class='object'>
+            </div>
+        </td>
+        <td>
+            <img src='arrow.png' class='arrow'>
+        </td>
+        <td>
+            <div class='parent parent_too-large_eq'>
+                <img id='smaller_eq' src='test-image.gif' class='object'>
+            </div>
+        </td>
+    </table>
     
 </body>
 </html>
