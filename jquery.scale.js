@@ -60,21 +60,21 @@ jQuery.fn.scale = function( center )
     // if the center option is enabled, also center the object within the parent
     if( center == "center" ){
         this.css( 'position', 'relative' );
-        this.css( 'margin-top', this.parent().innerHeight()/2 - 
-                  this.outerHeight()/2 );
-        this.css( 'margin-left', this.parent().innerWidth()/2 - 
-                  this.outerWidth()/2 );
+        this.css( 'margin-top', this.parent().innerHeight()/2 - this.outerHeight()/2 );
+        this.css( 'margin-left', this.parent().innerWidth()/2 - this.outerWidth()/2 );
     }
     
     // match the height while maintaining the aspect ratio
-    function matchHeight( obj )
+    function matchHeight( obj ){
         obj.width( obj.outerWidth() * obj.parent().innerHeight()/
-                   obj.outerHeight() - (obj.outerWidth() - obj.width()) );
-     
+            obj.outerHeight() - (obj.outerWidth() - obj.width()) );
+    }
+    
     // match the width while maintaining the aspect ratio
-    function matchWidth( obj )
+    function matchWidth( obj ){
         obj.height( obj.outerHeight() * obj.parent().innerWidth()/
                     obj.outerWidth() - (obj.outerHeight() - obj.height()) );
+    }
 
     // return this object for chaining    
     return this;
