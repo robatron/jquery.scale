@@ -60,7 +60,19 @@
         
         /* layout styles -----------------------------------------------------*/
 
-        h1, h2, h3, h4 { font-family:"Arial",sans-serif}
+        body{ 
+            padding: 3em;
+            margin-left: auto;
+            margin-right: auto;
+            max-width:800;
+            border: 1px solid gray;
+        }
+
+        h1, h2, h3, h4 { font-family:"Arial",sans-serif; }
+        
+        h2 { margin-top: 3em; }
+        
+        table { margin-bottom: 3em; }
         
         p, li { font-size: 12px; }
        
@@ -73,11 +85,17 @@
         .code{
             font-size: 10px;
             font-family:"monospace"; 
+            margin-bottom: 3em;
         }
         
         .indent{
             position: relative;
-            margin-left: 2em;
+            margin-left: 3em;
+        }
+        
+        .title{
+            text-align: center;
+            margin-bottom: 3em;
         }
         
         .footer-wrapper{ 
@@ -96,37 +114,83 @@
     <script src="jquery.scale.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $(".scale").scale("center");
+
+            // scale the example objects
+            $(".ex_no-opts").scale();
+            $(".ex_center").scale("center");
+            $(".ex_stretch").scale("stretch");
+            $(".ex_center-stretch").scale("center", "stretch");
         });
     </script>
 </head>
 <body>
+    <div class='title'>
     <h1>jquery.scale</h1>
+    <p><a href='jquery.scale.js'>[download]</a></p>
+    </div>
     
     <div class='indent'>
         <p>
             The jQuery "scale" plugin resizes objects to fit inside thier 
-            parents while maintaining the aspect ratio. To use it, simply 
-            apply the plugin to any object, i.e.
+            parents while maintaining the aspect ratio. In the examples below, 
+            the <span class='parent' style='border-width:2px'>green box</span> 
+            represents the parent, and the <span style='border:2px solid red'>
+            red-bordered image</span> represents the object.
         </p>
         
-        <p class='code indent'>
+        <h2>usage</h2>
+        
+        <p> To use the plugin, simply apply the it to any object, i.e.</p>
+        
+        <div class='code indent'>
             $("#foo").scale()
-        </p>
+            
+            <p class='parent parent_too-large_eq indent'>
+                <img class='ex_no-opts' src='test-image.gif' class='object'>
+            </p>
+        </div>
         
         <p>
-            Optionally, one can also apply the "center" option, which will 
-            center the object horizontally and vertically inside the parent,
+            Optionally, one may also apply the "center" option, which will 
+            center the object horizontally and vertically inside the parent, 
             i.e.
         </p>
         
-        <p class='code indent'>
+        <div class='code indent'>
             $("#foo").scale("center")
-        </p>
+            
+            <p class='parent parent_too-large_eq indent'>
+                <img class='ex_center' src='test-image.gif' class='object'>
+            </p>
+        </div>
         
         <p>
-            You can download the source <a href='jquery.scale.js'>here</a>.
+            One may also apply the "stretch" option, which will stretch the 
+            object to fit inside the parent if the object is smaller than the 
+            parent, i.e.
         </p>
+        
+        <div class='code indent'>
+            $("#foo").scale("stretch")
+            
+            <p class='parent parent_too-large_eq indent'>
+                <img class='ex_stretch' src='test-image.gif' class='object'>
+            </p>
+        </div>
+        
+        <p>
+            One may also combine these options in any order:
+        </p>
+        <div class='code indent'>
+            $("#foo").scale("center","stretch")
+        </div>
+        <div class='code indent'>
+            $("#foo").scale("stretch","center")
+            
+            <p class='parent parent_too-large_eq indent'>
+                <img class='ex_center-stretch' src='test-image.gif' class='object'>
+            </p>
+        </div>
 
         <h2>known issues</h2>
         <p> 
@@ -138,15 +202,12 @@
             <li>Opera</li>
         </ul>
         
-        <h2>demo</h2>
+        <h2>a more thorough demo</h2>
         <p>
-            Below, the <span class='parent'>green box</span> represents the 
-            parent, and the 
-            <span style='border: solid red'>red-bordered image</span> 
-            represents the object. In each category, the demo shows what
-            the parent/object combination looks like before (on the left) and 
-            after applying the plugin (on the right). Please note that the 
-            "center" option is enabled for each demo.
+            In each category, the demo shows what the parent/object combination 
+            looks like before (on the left) and after applying the plugin (on 
+            the right). Please note that the "center" and "stretch" options are
+            enabled for each demo.
         </p>
 
         <h3>object is the exact same size as the parent</h3>
@@ -162,7 +223,7 @@
             </td>
             <td>
                 <div class='parent parent_same-size'>
-                    <img id='same-size' class='object scale' src='test-image.gif'>
+                    <img id='same-size' class='object ex_center-stretch' src='test-image.gif'>
                 </div>
             </td>
         </tr></table>
@@ -180,7 +241,7 @@
             </td>
             <td>
                 <div class='parent parent_too-short'>
-                    <img id='taller' class='object scale' src='test-image.gif'>
+                    <img id='taller' class='object ex_center-stretch' src='test-image.gif'>
                 </div>
             </td>
         </tr></table>
@@ -198,7 +259,7 @@
             </td>
             <td>
                 <div class='parent parent_too-skinny'>
-                    <img id='wider' src='test-image.gif' class='object scale'>
+                    <img id='wider' src='test-image.gif' class='object ex_center-stretch'>
                 </div>
             </td>
         </tr></table>
@@ -217,7 +278,7 @@
             </td>
             <td>
                 <div class='parent parent_too-small_h-ct-w'>
-                    <img id='larger_h-ct-w' src='test-image.gif' class='object scale'>
+                    <img id='larger_h-ct-w' src='test-image.gif' class='object ex_center-stretch'>
                 </div>
             </td>
         </tr></table>
@@ -236,7 +297,7 @@
             </td>
             <td>
                 <div class='parent parent_too-small_w-ct-h'>
-                    <img id='larger_w-ct-h' src='test-image.gif' class='object scale'>
+                    <img id='larger_w-ct-h' src='test-image.gif' class='object ex_center-stretch'>
                 </div>
             </td>
         </tr></table>
@@ -255,7 +316,7 @@
             </td>
             <td>
                 <div class='parent parent_too-small_eq'>
-                    <img id='larger_eq' src='test-image.gif' class='object scale'>
+                    <img id='larger_eq' src='test-image.gif' class='object ex_center-stretch'>
                 </div>
             </td>
         </tr></table>
@@ -275,7 +336,7 @@
             <td>
                 <div class='parent parent_too-large_h-ct-w'>
                     <img id='smaller_h-ct-w' src='test-image.gif' 
-                         class='object scale'>
+                         class='object ex_center-stretch'>
                 </div>
             </td>
         </tr></table>
@@ -295,7 +356,7 @@
             <td>
                 <div class='parent parent_too-large_w-ct-h'>
                     <img id='smaller_w-ct-h' src='test-image.gif' 
-                         class='object scale'>
+                         class='object ex_center-stretch'>
                 </div>
             </td>
         </tr></table>
@@ -314,7 +375,7 @@
             </td>
             <td>
                 <div class='parent parent_too-large_eq'>
-                    <img id='smaller_eq' src='test-image.gif' class='object scale'>
+                    <img id='smaller_eq' src='test-image.gif' class='object ex_center-stretch'>
                 </div>
             </td>
         </tr></table>
