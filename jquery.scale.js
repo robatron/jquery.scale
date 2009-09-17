@@ -10,7 +10,7 @@
  *
  * @id jQuery.scale
  * @id jQuery.fn.scale
- * @param {String} Enter "center" to also center the object within its parent
+ * @param {String, [String]} In any order, enter "center" (to center the object) and/or "stretch" (to stretch the object to fit inside the parent)
  * @return {jQuery} Returns the same jQuery object, for chaining.
  *
  * jQuery plugin structure based on "A Really Simple jQuery Plugin Tutorial" 
