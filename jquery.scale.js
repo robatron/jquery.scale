@@ -13,69 +13,96 @@
  * @param {String} Enter "center" to also center the object within its parent
  * @return {jQuery} Returns the same jQuery object, for chaining.
  *
+ * jQuery plugin structure based on "A Really Simple jQuery Plugin Tutorial" 
+ * (http://www.queness.com/post/112/a-really-simple-jquery-plugin-tutorial) by
+ * Kevin Liew
  */
 
-jQuery.fn.scale = function( center )
-{    
-    // Object too tall, but width is fine. Need to shorten.
-    if( this.outerHeight() > this.parent().innerHeight() && 
-        this.outerWidth() < this.parent().innerWidth() ){
- 
-        matchHeight( this );       
-    }
-    
-    // Object too wide, but height is fine. Need to diet.
-    else if( this.outerWidth() > this.parent().innerWidth() && 
-             this.outerHeight() < this.parent().innerHeight() ){
+(function($){                           // anonymous function wrapper
 
-        matchWidth( this );    
-    }
+    $.fn.extend({                       // attach new method to jQuery
     
-    // Object too short and skinny. Need to match the dimenstion that is
-    // closer to being correct.
-    else if( this.outerWidth() < this.parent().innerWidth() && 
-             this.outerHeight() < this.parent().innerHeight() ){
-      
-        if( Math.abs(this.parent().innerHeight() - this.outerHeight()) <= 
-            Math.abs(this.parent().innerWidth() - this.outerWidth()) ){
+        scale: function( center ){      // declare plugin name and parameter
+        
+            // iterate over current set of matched elements
+            return this.each( function() {
             
-            matchHeight( this );
-            
-        } else matchWidth( this );
-    
-    // Object too tall and wide. Need to match the dimenstion that is
-    // further from being correct.
-    } else if( this.outerWidth() > this.parent().innerWidth() && 
-               this.outerHeight() > this.parent().innerHeight() ){
-               
-        if( Math.abs(this.parent().innerHeight() - this.outerHeight()) > 
-            Math.abs(this.parent().innerWidth() - this.outerWidth()) ){
-            
-            matchHeight( this );
-            
-        } else matchWidth( this );
+                // wait for the object to be fully loaded before doing anything
+                this.onload = function(){
+                
+                    // capture the object
+                    var obj = $(this);
+                    
+                    // Object too tall, but width is fine. Need to shorten.
+                    if( obj.outerHeight() > obj.parent().innerHeight() && 
+                        obj.outerWidth() < obj.parent().innerWidth() ){
+                 
+                        matchHeight();       
+                    }
+                    
+                    // Object too wide, but height is fine. Need to diet.
+                    else if( obj.outerWidth() > obj.parent().innerWidth() && 
+                             obj.outerHeight() < obj.parent().innerHeight() ){
 
-    }//else, object is the same size  as the parent. Do nothing.
+                        matchWidth();    
+                    }
+                    
+                    // Object too short and skinny. Need to match the dimenstion that is
+                    // closer to being correct.
+                    else if( obj.outerWidth() < obj.parent().innerWidth() && 
+                             obj.outerHeight() < obj.parent().innerHeight() ){
+                      
+                        if( Math.abs(obj.parent().innerHeight() - obj.outerHeight()) <= 
+                            Math.abs(obj.parent().innerWidth() - obj.outerWidth()) ){
+                            
+                            matchHeight();
+                            
+                        } else matchWidth();
+                    
+                    // Object too tall and wide. Need to match the dimenstion that is
+                    // further from being correct.
+                    } else if( obj.outerWidth() > obj.parent().innerWidth() && 
+                               obj.outerHeight() > obj.parent().innerHeight() ){
+                               
+                        if( Math.abs(obj.parent().innerHeight() - obj.outerHeight()) > 
+                            Math.abs(obj.parent().innerWidth() - obj.outerWidth()) ){
+                            
+                            matchHeight();
+                            
+                        } else matchWidth();
 
-    // if the center option is enabled, also center the object within the parent
-    if( center == "center" ){
-        this.css( 'position', 'relative' );
-        this.css( 'margin-top', this.parent().innerHeight()/2 - this.outerHeight()/2 );
-        this.css( 'margin-left', this.parent().innerWidth()/2 - this.outerWidth()/2 );
-    }
-    
-    // match the height while maintaining the aspect ratio
-    function matchHeight( obj ){
-        obj.width( obj.outerWidth() * obj.parent().innerHeight()/
-            obj.outerHeight() - (obj.outerWidth() - obj.width()) );
-    }
-    
-    // match the width while maintaining the aspect ratio
-    function matchWidth( obj ){
-        obj.height( obj.outerHeight() * obj.parent().innerWidth()/
-                    obj.outerWidth() - (obj.outerHeight() - obj.height()) );
-    }
+                    }//else, object is the same size  as the parent. Do nothing.
 
-    // return this object for chaining    
-    return this;
-};
+                    // if the center option is enabled, also center the object within the parent
+                    if( center == "center" ){
+                        obj.css( 'position', 'relative' );
+                        obj.css( 'margin-top', Math.round( obj.parent().innerHeight()/2 - obj.outerHeight()/2 ) );
+                        obj.css( 'margin-left', Math.round( obj.parent().innerWidth()/2 - obj.outerWidth()/2 ) );
+                    }
+                    
+                    // match the height while maintaining the aspect ratio
+                    function matchHeight(){
+                        obj.width( 
+                            Math.round( 
+                                obj.outerWidth() * obj.parent().innerHeight()/
+                                obj.outerHeight() - (obj.outerWidth() - obj.width()) 
+                             ) 
+                         );
+                    }
+                    
+                    // match the width while maintaining the aspect ratio
+                    function matchWidth(){
+                        obj.height( 
+                            Math.round( obj.outerHeight() * obj.parent().innerWidth()/
+                                    obj.outerWidth() - (obj.outerHeight() - obj.height()) ) );
+                    }
+                
+                }
+            
+            });     //END matched element iterations
+        
+        }           //END plugin declaration
+        
+    });             //END new jQuery method attachment
+    
+})(jQuery);         //END anonymous function wrapper
