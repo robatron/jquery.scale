@@ -61,7 +61,7 @@
         /* layout styles -----------------------------------------------------*/
 
         body{ 
-            padding: 3em;
+            padding: 1em 3em 3em;
             margin-left: auto;
             margin-right: auto;
             max-width:800;
@@ -94,7 +94,7 @@
         }
         
         .title{
-            text-align: center;
+            
             margin-bottom: 3em;
         }
         
@@ -126,13 +126,21 @@
 <body>
     <div class='title'>
     <h1>jquery.scale</h1>
-    <p><a href='jquery.scale.js'>[download]</a></p>
+    <p class='indent'><a href='jquery.scale.js'>[download]</a></p>
+    <p class='indent'><a href='http://github.com/robatron/jquery.scale'>[github page]</a></p>
     </div>
     
     <div class='indent'>
+        <h2>about</h2>
         <p>
             The jQuery "scale" plugin resizes objects to fit inside thier 
-            parents while maintaining the aspect ratio. In the examples below, 
+            parents while maintaining the aspect ratio. It was written for the
+            <a href='http://trac.osuosl.org/trac/touchscreen/'>TouchScreen 
+            project</a> which is being developed at the 
+            <a href='http://osuosl.org/'>OSU Open Source Lab</a>. 
+        </p>
+        <p>
+            In the examples below, 
             the <span class='parent' style='border-width:2px'>green box</span> 
             represents the parent, and the <span style='border:2px solid red'>
             red-bordered image</span> represents the object.
