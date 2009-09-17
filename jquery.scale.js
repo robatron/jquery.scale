@@ -22,7 +22,7 @@
 
     $.fn.extend({                       // attach new method to jQuery
     
-        scale: function( center ){      // declare plugin name and parameter
+        scale: function( arg1, arg2 ){      // declare plugin name and parameter
         
             // iterate over current set of matched elements
             return this.each( function() {
@@ -36,7 +36,7 @@
                     // Object too tall, but width is fine. Need to shorten.
                     if( obj.outerHeight() > obj.parent().innerHeight() && 
                         obj.outerWidth() < obj.parent().innerWidth() ){
-                 
+
                         matchHeight();       
                     }
                     
@@ -47,25 +47,30 @@
                         matchWidth();    
                     }
                     
-                    // Object too short and skinny. Need to match the dimenstion that is
-                    // closer to being correct.
+                    // Object too short and skinny. If "stretch" option enabled,
+                    // match the dimenstion that is closer to being correct.
                     else if( obj.outerWidth() < obj.parent().innerWidth() && 
-                             obj.outerHeight() < obj.parent().innerHeight() ){
+                             obj.outerHeight() < obj.parent().innerHeight() &&
+                             (arg1 == "stretch" || arg2 == "stretch") ){
                       
-                        if( Math.abs(obj.parent().innerHeight() - obj.outerHeight()) <= 
-                            Math.abs(obj.parent().innerWidth() - obj.outerWidth()) ){
+                        if( Math.abs(obj.parent().innerHeight() - 
+                                     obj.outerHeight()) <= 
+                            Math.abs(obj.parent().innerWidth() - 
+                                     obj.outerWidth()) ){
                             
                             matchHeight();
                             
                         } else matchWidth();
                     
-                    // Object too tall and wide. Need to match the dimenstion that is
-                    // further from being correct.
+                    // Object too tall and wide. Need to match the dimenstion 
+                    // that is further from being correct.
                     } else if( obj.outerWidth() > obj.parent().innerWidth() && 
                                obj.outerHeight() > obj.parent().innerHeight() ){
                                
-                        if( Math.abs(obj.parent().innerHeight() - obj.outerHeight()) > 
-                            Math.abs(obj.parent().innerWidth() - obj.outerWidth()) ){
+                        if( Math.abs(obj.parent().innerHeight() - 
+                                     obj.outerHeight()) > 
+                            Math.abs(obj.parent().innerWidth() - 
+                                     obj.outerWidth()) ){
                             
                             matchHeight();
                             
@@ -73,28 +78,30 @@
 
                     }//else, object is the same size  as the parent. Do nothing.
 
-                    // if the center option is enabled, also center the object within the parent
-                    if( center == "center" ){
+                    // if the center option is enabled, also center the object 
+                    //within the parent
+                    if( arg1 == "center" || arg2 == "center" ){
                         obj.css( 'position', 'relative' );
-                        obj.css( 'margin-top', Math.round( obj.parent().innerHeight()/2 - obj.outerHeight()/2 ) );
-                        obj.css( 'margin-left', Math.round( obj.parent().innerWidth()/2 - obj.outerWidth()/2 ) );
+                        obj.css( 'margin-top', 
+                             obj.parent().innerHeight()/2 - 
+                                        obj.outerHeight()/2  );
+                        obj.css( 'margin-left', 
+                             obj.parent().innerWidth()/2 - 
+                                        obj.outerWidth()/2  );
                     }
                     
                     // match the height while maintaining the aspect ratio
                     function matchHeight(){
-                        obj.width( 
-                            Math.round( 
-                                obj.outerWidth() * obj.parent().innerHeight()/
-                                obj.outerHeight() - (obj.outerWidth() - obj.width()) 
-                             ) 
-                         );
+                        obj.width( obj.outerWidth() * 
+                            obj.parent().innerHeight()/obj.outerHeight() - 
+                            (obj.outerWidth() - obj.width()));
                     }
                     
                     // match the width while maintaining the aspect ratio
                     function matchWidth(){
-                        obj.height( 
-                            Math.round( obj.outerHeight() * obj.parent().innerWidth()/
-                                    obj.outerWidth() - (obj.outerHeight() - obj.height()) ) );
+                        obj.height(  obj.outerHeight() * 
+                            obj.parent().innerWidth()/obj.outerWidth() - 
+                            (obj.outerHeight() - obj.height())  );
                     }
                 
                 }

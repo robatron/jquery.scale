@@ -62,7 +62,7 @@
 
         h1, h2, h3, h4 { font-family:"Arial",sans-serif}
         
-        p { font-size: 12px; }
+        p, li { font-size: 12px; }
        
         .table-data{
             vertical-align:baseline;
@@ -102,33 +102,42 @@
 </head>
 <body>
     <h1>jquery.scale</h1>
-        <div class='indent'>
-            <p>
-                The jQuery "scale" plugin resizes objects to fit inside thier 
-                parents while maintaining the aspect ratio. To use it, simply 
-                apply the plugin to any object, i.e.
-            </p>
-            
-            <p class='code indent'>
-                $("#object").scale()
-            </p>
-            
-            <p>
-                Optionally, one can also apply the "center" option, which will 
-                center the object horizontally and vertically inside the parent,
-                i.e.
-            </p>
-            
-            <p class='code indent'>
-                $("#object").scale("center")
-            </p>
-            
-            <p>
-                You can download the source <a href='jquery.scale.js'>here</a>.
-            </p>
-        </div>
     
-    <div id='demo' class='indent'>
+    <div class='indent'>
+        <p>
+            The jQuery "scale" plugin resizes objects to fit inside thier 
+            parents while maintaining the aspect ratio. To use it, simply 
+            apply the plugin to any object, i.e.
+        </p>
+        
+        <p class='code indent'>
+            $("#foo").scale()
+        </p>
+        
+        <p>
+            Optionally, one can also apply the "center" option, which will 
+            center the object horizontally and vertically inside the parent,
+            i.e.
+        </p>
+        
+        <p class='code indent'>
+            $("#foo").scale("center")
+        </p>
+        
+        <p>
+            You can download the source <a href='jquery.scale.js'>here</a>.
+        </p>
+
+        <h2>known issues</h2>
+        <p> 
+            This plugin is known to not work correctly in the following 
+            browsers:
+        </p>
+        <ul>
+            <li>Internet Explorer</li>
+            <li>Opera</li>
+        </ul>
+        
         <h2>demo</h2>
         <p>
             Below, the <span class='parent'>green box</span> represents the 
