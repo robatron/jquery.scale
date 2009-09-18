@@ -27,7 +27,7 @@
             // iterate over current set of matched elements
             return this.each( function() {
             
-                console.log( "jquery.scale is starting...");
+                safelog( "jquery.scale is starting...");
             
                 // capture the object
                 var obj = $(this);
@@ -37,7 +37,7 @@
             
                 // force element reload if it's an image
                 if( obj.attr('src') != null ){
-                    console.log( "jquery.scale: object is an image" );
+                    safelog( "jquery.scale: object is an image" );
                     var date = new Date();
                     var cursrc = obj.attr("src");
                     var newsrc = cursrc;
@@ -49,13 +49,13 @@
                     this.onload = start;
                      
                 } else {
-                    console.log("jquery.scale: object is NOT an image");
+                    safelog("jquery.scale: object is NOT an image");
                     start();
                 }
             
                 // the main plugin function
                 function start(){
-                    console.log( "jquery.scale: BEFORE scaling, object's size" +
+                    safelog( "jquery.scale: BEFORE scaling, object's size" +
                         " = " + obj.outerWidth() + "x" + obj.outerHeight() + 
                         ", object's parent's size = " + 
                         obj.parent().innerWidth() + "x" + 
@@ -134,13 +134,18 @@
                             (obj.outerHeight() - obj.height())  );
                     }
                     
-                    console.log( "jquery.scale: AFTER scaling, object's size" +
+                    safelog( "jquery.scale: AFTER scaling, object's size" +
                         " = " + obj.outerWidth() + "x" + obj.outerHeight() + 
                         ", object's parent's size = " + 
                         obj.parent().innerWidth() + "x" + 
                         obj.parent().innerHeight() + ".'" );
                         
-                }   //END onload
+                }   //END start
+                
+                function safelog( msg ){
+                    if( window.console )
+                        console.log( msg );
+                }
             
             });     //END matched element iterations
         
