@@ -27,6 +27,15 @@
             // iterate over current set of matched elements
             return this.each( function() {
             
+                // force element reload
+                var date = new Date();
+                var cursrc = $(this).attr("src");
+                var newsrc = cursrc;
+                if( cursrc.indexOf('?') != -1 )
+                    newsrc = cursrc.substring( 0, cursrc.indexOf('?'));
+                newsrc = newsrc + "?" + date.getTime();
+                $(this).attr( "src", newsrc );
+            
                 // wait for the object to be fully loaded before doing anything
                 this.onload = function(){
                 
