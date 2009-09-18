@@ -33,6 +33,12 @@
                     // capture the object
                     var obj = $(this);
                     
+                    console.log( "jquery.scale: BEFORE scaling, object's size" +
+                        " = " + obj.outerWidth() + "x" + obj.outerHeight() + 
+                        ", object's parent's size = " + 
+                        obj.parent().innerWidth() + "x" + 
+                        obj.parent().innerHeight() + ".'" );
+                    
                     // Object too tall, but width is fine. Need to shorten.
                     if( obj.outerHeight() > obj.parent().innerHeight() && 
                         obj.outerWidth() < obj.parent().innerWidth() ){
@@ -92,6 +98,7 @@
                     
                     // match the height while maintaining the aspect ratio
                     function matchHeight(){
+                        obj.removeAttr( "height" );
                         obj.width( obj.outerWidth() * 
                             obj.parent().innerHeight()/obj.outerHeight() - 
                             (obj.outerWidth() - obj.width()));
@@ -99,11 +106,17 @@
                     
                     // match the width while maintaining the aspect ratio
                     function matchWidth(){
+                        obj.removeAttr( "width" );
                         obj.height(  obj.outerHeight() * 
                             obj.parent().innerWidth()/obj.outerWidth() - 
                             (obj.outerHeight() - obj.height())  );
                     }
-                
+                    
+                    console.log( "jquery.scale: AFTER scaling, object's size" +
+                        " = " + obj.outerWidth() + "x" + obj.outerHeight() + 
+                        ", object's parent's size = " + 
+                        obj.parent().innerWidth() + "x" + 
+                        obj.parent().innerHeight() + ".'" );
                 }
             
             });     //END matched element iterations
