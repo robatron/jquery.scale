@@ -28,7 +28,7 @@
             return this.each( function() {
             
                 // wait for the object to be fully loaded before doing anything
-                this.onload = function(){
+                //this.onload = function(){
                 
                     // capture the object
                     var obj = $(this);
@@ -117,7 +117,8 @@
                         ", object's parent's size = " + 
                         obj.parent().innerWidth() + "x" + 
                         obj.parent().innerHeight() + ".'" );
-                }
+                        
+                //} //END onload
             
             });     //END matched element iterations
         
