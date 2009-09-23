@@ -10,8 +10,8 @@
         }
 
         .parent_same-size{
-            height: 200;
-            width: 150;
+            height: 206;
+            width: 156;
         }
 
         .parent_too-short{
@@ -55,7 +55,7 @@
         }
 
         .object{
-            display: block;
+            border: 3px solid red;
         }
         
         /* layout styles -----------------------------------------------------*/
@@ -145,6 +145,11 @@
             represents the parent, and the <span style='border:2px solid red'>
             red-bordered image</span> represents the object.
         </p>
+        <p>
+            <span style="font-weight:bold; color:red">Note:</span> As mentioned
+            below, this plugin DOES NOT work in 
+            <span style="font-weight:bold; color:red">Internet Explorer</span>.
+        </p>
         
         <h2>usage</h2>
         
@@ -154,7 +159,7 @@
             $("#foo").scale()
             
             <p class='parent parent_too-large_eq indent'>
-                <img class='ex_no-opts' src='test-image.gif' class='object'>
+                <img class='object ex_no-opts' src='test-image.gif'>
             </p>
         </div>
         
@@ -168,7 +173,7 @@
             $("#foo").scale("center")
             
             <p class='parent parent_too-large_eq indent'>
-                <img class='ex_center' src='test-image.gif' class='object'>
+                <img class='object ex_center' src='test-image.gif'>
             </p>
         </div>
         
@@ -182,7 +187,7 @@
             $("#foo").scale("stretch")
             
             <p class='parent parent_too-large_eq indent'>
-                <img class='ex_stretch' src='test-image.gif' class='object'>
+                <img class='object ex_stretch' src='test-image.gif'>
             </p>
         </div>
         
@@ -195,7 +200,7 @@
             $("#foo").scale("stretch","center")
             
             <p class='parent parent_too-large_eq indent'>
-                <img class='ex_center-stretch' src='test-image.gif' class='object'>
+                <img class='object ex_center-stretch' src='test-image.gif'>
             </p>
         </div>
 
