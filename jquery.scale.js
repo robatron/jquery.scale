@@ -25,10 +25,11 @@
         scale: function( arg1, arg2 ){// declare plugin name and parameter
         
             // turn logging on/off
-            DEBUG_MODE = true;
+            DEBUG_MODE = false;
         
             // iterate over current set of matched elements
-            return this.each( function() {
+            return this.each( function()
+            {
                 safelog( "jquery.scale is starting...");
                 
                 safelog( "jquery.scale: Using browser \"" + navigator.appName +
@@ -60,8 +61,8 @@
                 }
                 
                 // plugin's main function
-                function scale(){
-
+                function scale()
+                {
                     // if this is the plugin's first run on the object, capture
                     // the object's original dimensions
                     if( !obj.attr('jquery_scale_orig-height') ){
@@ -179,7 +180,8 @@
                 }   //END scale
                 
                 // match the height while maintaining the aspect ratio
-                function matchHeight(){
+                function matchHeight()
+                {
                     safelog( "jquery.scale: matching height" );
                     obj.width( obj.outerWidth(  ) * 
                         obj.parent().innerHeight()/obj.outerHeight(  ) - 
@@ -189,7 +191,8 @@
                 }
                 
                 // match the width while maintaining the aspect ratio
-                function matchWidth(){
+                function matchWidth()
+                {
                     safelog( "jquery.scale: matching width" );
                     obj.height(  obj.outerHeight(  ) * 
                         obj.parent().innerWidth()/obj.outerWidth(  ) - 
@@ -199,7 +202,8 @@
                 }
                 
                 // a function to safely log
-                function safelog( msg ){ 
+                function safelog( msg )
+                { 
                     if( window.console && DEBUG_MODE ) console.log( msg );
                 }
                             
