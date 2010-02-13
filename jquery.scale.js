@@ -10,7 +10,7 @@
  *
  * @id jQuery.scale
  * @id jQuery.fn.scale
- * @param {String, [String]} In any order, enter "center" (to center the object) and/or "stretch" (to stretch the object to fit inside the parent)
+ * @param {String, [String]} In any order, enter "center" (to center the object) and/or "stretch" (to stretch the object to fit inside the parent) and/or "debug" (to turn on verbose logging)
  * @return {jQuery} Returns the same jQuery object, for chaining.
  *
  * jQuery plugin structure based on "A Really Simple jQuery Plugin Tutorial" 
@@ -22,10 +22,7 @@
 
     $.fn.extend({                           // attach new method to jQuery
     
-        scale: function( arg1, arg2 ){// declare plugin name and parameter
-        
-            // turn logging on/off
-            DEBUG_MODE = false;
+        scale: function( arg1, arg2, arg3 ){// declare plugin name and parameter
         
             // iterate over current set of matched elements
             return this.each( function()
@@ -34,6 +31,17 @@
                 
                 safelog( "jquery.scale: Using browser \"" + navigator.appName +
                     "\" version \"" + navigator.appVersion + "\"");
+
+                // parse the arguments into flags
+                var center = false;
+                var stretch = false;
+                var debug = false;
+                if( arg1 == "center" || arg2 == "center" || arg3 == "center")
+                    center = true;
+                if( arg1 == "stretch" || arg2 == "stretch" || arg3 == "stretch")
+                    stretch = true;
+                if( arg1 == "debug" || arg2 == "debug" || arg3 == "debug")
+                    debug = true;
             
                 // capture the object
                 var obj = $(this);
@@ -114,7 +122,7 @@
                     // match the dimenstion that is closer to being correct.
                     else if( obj.outerWidth(  ) < obj.parent().innerWidth() && 
                              obj.outerHeight(  ) < obj.parent().innerHeight() &&
-                             (arg1 == "stretch" || arg2 == "stretch" ) ){
+                             stretch ){
                       
                         safelog( "jquery.scale: object is too short and " +
                             "skinny, and stretch option enabled" );
@@ -156,7 +164,7 @@
 
                     // if the center option is enabled, also center the object 
                     // within the parent
-                    if( arg1 == "center" || arg2 == "center" ){
+                    if( center ){
                         safelog( "jquery.scale: centering option enabled" );
                         obj.css( 'position', 'relative' );
                         obj.css( 'margin-top', 
@@ -204,7 +212,7 @@
                 // a function to safely log
                 function safelog( msg )
                 { 
-                    if( window.console && DEBUG_MODE ) console.log( msg );
+                    if( window.console && debug ) console.log( msg );
                 }
                             
             });     //END matched element iterations
