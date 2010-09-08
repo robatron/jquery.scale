@@ -1,7 +1,7 @@
 /**
  * jQuery.scale plugin
  * Copyright (c) 2009 Oregon State Univerisity - info(at)osuosl.org | osuosl.org
- * licensed under GPLv3.
+ * Dual-licensed under GPLv2 and the MIT License.
  * Date: 9/4/2009
  *
  * @projectDescription jQuery extension for scaling an object to fit inside its parent while maintaining the aspect ratio
