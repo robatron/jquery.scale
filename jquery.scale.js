@@ -60,6 +60,9 @@
                     obj.attr( "src", newsrc );
                     safelog( "jquery.scale: img src changed to " + newsrc + 
                         " to force a reload");
+					// For I.E. 6-8 support as it requires a new image for scaling
+					if($.support.leadingWhitespace)
+						obj.attr("src", cursrc);
                     this.onload = scale;
                     
                 } else {
