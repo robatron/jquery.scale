@@ -48,7 +48,7 @@
                 // if this is the plugin's first run on the object, and the
                 // object is an image, force a reload
                 if( obj.attr('src') && 
-                    !obj.attr('jquery_scale_orig-height') ){
+                    !obj.data('jquery_scale_orig-height') ){
                     
                     safelog( "jquery.scale: object is an image" );
                     var date = new Date();
@@ -75,9 +75,9 @@
                 {
                     // if this is the plugin's first run on the object, capture
                     // the object's original dimensions
-                    if( !obj.attr('jquery_scale_orig-height') ){
-                        obj.attr('jquery_scale_orig-height', obj.height() );
-                        obj.attr('jquery_scale_orig-width', obj.width() );
+                    if( !obj.data('jquery_scale_orig-height') ){
+                        obj.data('jquery_scale_orig-height', obj.height() );
+                        obj.data('jquery_scale_orig-width', obj.width() );
                         
                         safelog( "jquery.scale: is starting for the first " + 
                             "time. Captured the original dimensions of " + 
@@ -87,9 +87,9 @@
                     // reset the object's dimensions
                     } else {           
                         obj.height( parseInt( 
-                            obj.attr('jquery_scale_orig-height') ) );
+                            obj.data('jquery_scale_orig-height') ) );
                         obj.width( parseInt( 
-                            obj.attr('jquery_scale_orig-width') ) );
+                            obj.data('jquery_scale_orig-width') ) );
                         
                         safelog( "jquery.scale: has been run before. Reset " +
                             "the object to its original dimensions of " + 
