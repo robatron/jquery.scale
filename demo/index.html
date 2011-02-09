@@ -68,20 +68,45 @@
         /* layout styles ----------------------------------------------------*/
 
         body{ 
-            padding: 1em 3em 3em;
             margin-left: auto;
             margin-right: auto;
             max-width:700;
-            border: 1px solid gray;
+            font-size: 14px;
+            font-family: Helvetica, sans-serif;
         }
 
-        h1, h2, h3, h4 { font-family:"Arial",sans-serif; }
-        
-        h2, h3, h4 { margin-top: 3em; }
-        
-        table { margin-bottom: 3em; }
-        
-        p, li { font-size: 14px; }
+        #header{
+            padding: 15px;
+            background-color: lightgrey;
+            border-bottom: 2px solid gray;
+        }
+
+        #main{
+            padding: 15px;
+        }
+
+        #footer{
+            padding: 15px;
+            text-align: right;
+            background-color: lightgrey;
+            border-top: 2px solid gray;
+        }
+
+        h1{
+            margin: 0px;
+        }
+
+        h2{
+            margin-top: 3em;
+        }
+
+        h3{
+            margin-top:3em;
+        }
+
+        table { 
+            margin-bottom: 3em; 
+        }
        
         .table-data{
             vertical-align:baseline;
@@ -90,30 +115,13 @@
         }
         
         .code{
-            font-size: 12px;
-            font-family:"monospace"; 
-            margin-bottom: 3em;
+            font-family: Andale Mono, monospace; 
         }
         
         .indent{
             position: relative;
             margin-left: 3em;
         }
-        
-        .title{
-            margin-bottom: 3em;
-        }
-        
-        .footer-wrapper{ 
-            margin-top: 3em;
-            border-top: double gray; 
-        }
-        
-        .footer{
-            text-align: center;
-            border-top: 1px solid black; 
-        }
-        
     </style>
     
     <script 
@@ -132,39 +140,38 @@
     </script>
 </head>
 <body>
-    <div class='title'>
-    	<h1>jquery.scale</h1>
-    	<p class='indent'>
-			<a href='../jquery.scale.js'>
-				[download]
-			</a>
-		</p>
-    	<p class='indent'>
-        	<a href='http://github.com/robatron/jquery.scale'>
-				[github project page]
-			</a>
-		</p>
+    <div id='header'>
+        <h1>jquery.scale</h1>
     </div>
-    
-    <div class='indent'>
+
+    <div id='main'>
+        <p>
+            <a href='../jquery.scale.js'>[download]</a>
+        </p>
+        <p>
+            <a href='http://github.com/robatron/jquery.scale'>
+                [github project page]
+            </a>
+        </p>
+   
         <h2>about</h2>
         <p>
             jquery.scale is a jQuery extension that resizes objects to fit inside
-			their parents while maintaining the aspect ratio. It was written 
-			originally for the <a href='http://trac.osuosl.org/trac/touchscreen/'>
-			TouchScreen project</a> which was, at one time, being developed at the
-			<a href='http://osuosl.org/'>OSU Open Source Lab</a>. 
+            their parents while maintaining the aspect ratio. It was written 
+            originally for the <a href='http://trac.osuosl.org/trac/touchscreen/'>
+            TouchScreen project</a> which was, at one time, being developed at the
+            <a href='http://osuosl.org/'>OSU Open Source Lab</a>. 
         </p>
         <p>
             In the examples below, the 
-			<span class='parent' style='border-width:2px'>green box</span> 
+            <span class='parent' style='border-width:2px'>green box</span> 
             represents the parent, and the <span style='border:2px solid red'>
             red-bordered image</span> represents the object.
         </p>
         <p>
             <span style="font-weight:bold; color:red">Note:</span> As mentioned on
-			<a href='https://github.com/robatron/jquery.scale/issues'>the project
-			issues page</a>, this plugin DOES NOT work in 
+            <a href='https://github.com/robatron/jquery.scale/issues'>the project
+            issues page</a>, this plugin DOES NOT work in 
             <span style="font-weight:bold; color:red">Internet Explorer</span>.
         </p>
         
@@ -406,17 +413,10 @@
             </td>
         </tr></table>
     </div>
-    
-    <div class='footer-wrapper'>
-        <div class='footer'>
-            <p>
-                jquery.scale jQuery extention and demo page written by <a href='http://robmd.net'>Rob McGuire-Dale</a>
-            </p>
-            <p>
-                Copyright (c) 2009 <a href='http://osuosl.org'>OSU Open Source 
-                lab</a> (info at osuosl.org)
-            </p>
-        </div>
+
+    <div id='footer'>
+        By <a href='http://robmd.net'>Rob McGuire-Dale</a> Copyright (c) 2009
+        <a href='http://osuosl.org'>OSU Open Source lab</a>
     </div>
 </body>
 </html>
