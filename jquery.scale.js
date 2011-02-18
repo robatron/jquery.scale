@@ -1,22 +1,31 @@
 /**
- * jQuery.scale plugin
- * Copyright (c) 2009 to current, Oregon State Univerisity (http://osuosl.org)
- * Dual-licensed under GPLv2 and the MIT License.
+ * jQuery.scale
+ * 
+ * jQuery extention for scaling an object to fit inside its parent while
+ * maintaining the aspect ratio. See demo at 
+ * http://static.robmd.net/jquery.scale/demo
+ * 
+ * Usage:
+ *      $('foo').scale(String[, String][, string]) 
  *
- * @projectDescription jQuery extension for scaling an object to fit inside its
- * parent while maintaining the aspect ratio
- * @author Rob McGuire-Dale (http://robmd.net)
+ *      Where $('foo') is a jQuery reference to be scaled.
  *
- * @id jQuery.scale
- * @id jQuery.fn.scale
- * @param {String, [String]} In any order, enter "center" (to center the
- * object) and/or "stretch" (to stretch the object to fit inside the parent) 
- * and/or "debug" (to turn on verbose logging)
- * @return {jQuery} Returns the same jQuery object, for chaining.
+ * Parameters:
+ *      In any order, enter "center" (to center the object) and/or "stretch" 
+ *      (to stretch the object to fit inside the parent) and/or "debug" (to 
+ *      turn on verbose logging)
+ * 
+ * Returns:
+ *      The same jQuery object, for chaining.
  *
+ * By Rob McGuire-Dale (http://robmd.net), September 2009
+ * 
  * jQuery plugin structure based on "A Really Simple jQuery Plugin Tutorial" 
  * (http://www.queness.com/post/112/a-really-simple-jquery-plugin-tutorial) by
  * Kevin Liew
+ *
+ * Copyright (c) 2009 to current, OSU Open Source Lab (http://osuosl.org)
+ * Dual-licensed under GPLv2 and the MIT License.
  */
 
 (function($){                               // anonymous function wrapper
