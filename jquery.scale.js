@@ -95,10 +95,8 @@
                     // if this is NOT the plugin's first run on the object,
                     // reset the object's dimensions
                     } else {           
-                        obj.height( parseInt( 
-                            obj.data('jquery_scale_orig-height')));
-                        obj.width( parseInt( 
-                            obj.data('jquery_scale_orig-width')));
+                        obj.height(obj.data('jquery_scale_orig-height'));
+                        obj.width(obj.data('jquery_scale_orig-width'));
                         
                         safelog("jquery.scale: has been run before. Reset " +
                             "the object to its original dimensions of " + 
