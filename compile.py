@@ -76,7 +76,7 @@ f.close
 # ----------
 # finish up
 # ----------
-print "Compiled source from %d chars --> %d chars (reduced by %.2f%%)"%(len(source), len(data), 
-       float(len(data))/float(len(source))*100)
+print "Compiled source from %d chars --> %d chars (reduced by %.2f%%)"%\
+        (len(source), len(data), float(len(data))/float(len(source))*100)
 print "Finished!"
 
