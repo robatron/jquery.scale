@@ -1,0 +1,7 @@
+#! /bin/bash
+
+# Do a push and make the demo page update itself.
+
+git push
+ssh -t robmd.net "cd www/jquery.scale; git pull"
+
